@@ -127,7 +127,11 @@ Hotsock.configure do |config|
   # using environment variables, Rails encrypted credentials, AWS Parameter
   # Store, etc. and loading this key from there. For ES256 (ECDSA using P-256
   # and SHA-256), this key must be in PEM format. Don't use the key below!
-  # Generate your own! (optional)
+  # Generate your own!
+  #
+  # If you're storing this key in an environment variable, you may want to
+  # store it Base64-encoded in ENV and decode it here because environment files
+  # sometimes have a hard time with newline characters. (optional)
   config.issuer_private_key = "-----BEGIN EC PRIVATE KEY-----\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg72ab3fXPvtD2iIQQ\n/RWiZh8WA6T9u6JNhEuy1DPSFpuhRANCAASmEDhCts7/LkmooXH1tMhyh9Qn94e3\ny3e/UtmnnAYMPwro8iySvqEUrYaDUqQ3iMjYpf+mvxOFmCy97MsBj/pu\n-----END EC PRIVATE KEY-----"
 
   # The algorithm to use when signing with the above key. Defaults to ES256.
