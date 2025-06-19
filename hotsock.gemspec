@@ -29,6 +29,6 @@ Gem::Specification.new do |spec|
   )
   spec.files = `git ls-files`.split("\n").reject { |f| ignored.match(f) }
 
-  spec.add_dependency "jwt", "~> 2.7"
+  spec.add_dependency "jwt", ">= 2.7", "< 4.0"
   spec.add_dependency "aws-sdk-lambda", "~> 1.105"
 end
