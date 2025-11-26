@@ -2,8 +2,8 @@
 
 require_relative "../helper"
 
-class HotsockConfigTest < TLDR
-  def test_accepts_configuration_options
+describe Hotsock::Config do
+  it "accepts configuration options" do
     config = Hotsock::Config.new
     config.aws_region = "us-east-1"
     config.aws_access_key_id = "AKIAIOSFODNN7EXAMPLE"
@@ -24,15 +24,15 @@ class HotsockConfigTest < TLDR
     assert_equal "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY", config.aws_secret_access_key
   end
 
-  def test_requires_aws_region_if_reader_is_called
+  it "requires aws_region if reader is called" do
     assert_raises(ArgumentError) { Hotsock::Config.new.aws_region }
   end
 
-  def test_requires_signing_private_key_if_reader_is_called
+  it "requires signing private key if reader is called" do
     assert_raises(ArgumentError) { Hotsock::Config.new.issuer_private_key }
   end
 
-  def test_returns_valid_signing_key
+  it "returns valid signing key" do
     config = Hotsock::Config.new
     config.issuer_private_key = TEST_ES256_PRIVATE_KEY_PEM
     assert_instance_of OpenSSL::PKey::EC, config.issuer_key

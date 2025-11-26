@@ -8,6 +8,5 @@ group :development, :test do
 end
 
 group :test do
-  gem "mocktail"
-  gem "tldr"
+  gem "maxitest"
 end
