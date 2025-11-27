@@ -27,8 +27,8 @@ module Hotsock
       end
 
       def uid
-        "" # if !current_user
-        # current_user&.id.to_s
+        resolver = Hotsock::Turbo.config.uid_resolver
+        resolver ? resolver.call(self) : ""
       end
     end
   end
