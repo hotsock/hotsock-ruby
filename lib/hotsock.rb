@@ -4,6 +4,7 @@ require "hotsock/version"
 require "hotsock/config"
 require "hotsock/issuer"
 require "hotsock/publisher"
+require "hotsock/engine" if defined?(Rails)
 
 module Hotsock
   class << self
