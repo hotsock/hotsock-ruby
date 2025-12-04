@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Hotsock
   module Turbo
     class StreamsChannel
@@ -30,7 +32,7 @@ module Hotsock
         return nil if render == false
         return content if content
         return html if html
-        return ActionController::Base.render(formats: [:html], **rendering) if rendering.present?
+        return ApplicationController.render(formats: [:html], **rendering) if rendering.present?
 
         nil
       end

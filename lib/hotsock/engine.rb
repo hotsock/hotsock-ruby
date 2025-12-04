@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
+require "hotsock/turbo"
+
 module Hotsock
-  class Engine < Rails::Engine
-    isolate_namespace Hotsock
+  module Turbo
+    class Engine < Rails::Engine
+      isolate_namespace Hotsock::Turbo
 
-    initializer "hotsock.turbo" do
-      require "hotsock/turbo"
-
-      ActiveSupport.on_load(:action_view) do
-        include Hotsock::Turbo::StreamsHelper
+      initializer "hotsock.turbo.helpers" do
+        ActiveSupport.on_load(:action_view) do
+          include Hotsock::Turbo::StreamsHelper
+        end
       end
     end
   end

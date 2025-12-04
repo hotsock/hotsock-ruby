@@ -17,7 +17,12 @@ module Hotsock
       private
 
       def create_subscription_token(channel_name)
-        Hotsock.issue_token scope: "subscribe", channels: {[channel_name] => {subscribe: true}}
+        Hotsock.issue_token(
+          scope: "subscribe",
+          channels: {channel_name => {omitSubCount: true, subscribe: true}},
+          uid:,
+          exp: 1.week.from_now.to_i
+        )
       end
 
       def set_attributes(attributes, token, channel_name)

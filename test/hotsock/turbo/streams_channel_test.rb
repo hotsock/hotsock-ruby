@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "../../helper"
 require "ostruct"
 require "rails"
@@ -5,13 +7,16 @@ require "action_controller/railtie"
 require "hotsock/engine"
 
 # Create a minimal Rails application to run the engine initializers
-class TestApp < Rails::Application
-  config.eager_load = false
-  config.secret_key_base = "test"
+unless defined?(TestApp)
+  class TestApp < Rails::Application
+    config.eager_load = false
+    config.secret_key_base = "test"
+    config.hosts.clear
+  end
+  TestApp.initialize!
 end
-TestApp.initialize!
 
-class DummyController < ActionController::Base
+class ApplicationController < ActionController::Base
 end
 
 describe Hotsock::Turbo::StreamsChannel do
@@ -21,7 +26,7 @@ describe Hotsock::Turbo::StreamsChannel do
     @locals = {task: OpenStruct.new(id: 1, title: "Test Task")}
     @html = "<template>Task</template>"
     @remove_html = "<turbo-stream action=\"remove\" target=\"tasks-turbo-frame\"></turbo-stream>"
-    @controller = DummyController.new
+    @controller = ApplicationController.new
     @target = "tasks-turbo-frame"
   end
 

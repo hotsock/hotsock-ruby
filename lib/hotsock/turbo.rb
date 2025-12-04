@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "hotsock/turbo/config"
 require "hotsock/turbo/streams_channel"
 require "hotsock/turbo/streams_helper"
@@ -5,7 +7,7 @@ require "hotsock/turbo/streams_helper"
 module Hotsock
   module Turbo
     class << self
-      def configure(&block)
+      def configure
         yield config
       end
 
